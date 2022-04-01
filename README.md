@@ -3,9 +3,9 @@
 This is .net core code genarator. 
 
 It genarets >>
-iDal
-DAL
-iBLL
-BLL
-FCC
+iDal,
+DAL,
+iBLL,
+BLL,
+FCC,
 Controller
