@@ -1,6 +1,6 @@
 # Prince360.net.CodeGen
 
-This is .net core code genarator. 
+This is .Net Core code genarator. 
 
 It genarets >>
 iDal,
