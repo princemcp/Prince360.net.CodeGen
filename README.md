@@ -1,4 +1,4 @@
-# Prince360.net.CodeGen
+# www.Prince360.net
 
 This is .Net Core code genarator. 
 
