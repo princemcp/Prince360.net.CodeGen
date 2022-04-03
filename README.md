@@ -8,5 +8,5 @@ DAL,
 iBLL,
 BLL,
 FCC,
-Controller,
-Store Procedure for MSSQL
+Controller and
+Store Procedures for MSSQL
