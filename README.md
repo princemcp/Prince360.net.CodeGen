@@ -1,8 +1,8 @@
 # www.Prince360.net
 
-This is .Net Core code genarator. 
+This is .Net Core code generator. 
 
-It genarets >>
+It generates >>
 iDal,
 DAL,
 iBLL,
