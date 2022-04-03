@@ -223,8 +223,9 @@ namespace Mega.CodeGen.WebAPI.netCore
             if (datatype == "timestamp") return "GetInt64";
             if (datatype == "varbinary") return "ParseStrictByteArray";
             if (datatype == "decimal") return "GetDecimal";
+            if (datatype == "numeric") return "GetDecimal";
             return "Unknown";
-
+            
         }
     }
 }
