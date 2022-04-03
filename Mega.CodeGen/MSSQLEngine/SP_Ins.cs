@@ -45,11 +45,11 @@ namespace Mega.CodeGen.MSSQLEngine
             strQry += "\nUSE [" + DataBaseName + "]\n";
             strQry += "GO\n\n";
 
-            //strQry += "\nIF EXISTS (SELECT * FROM [dbo].[sysobjects]\n";
-            //strQry += "\t\tWHERE ID = object_id(N'[dbo].[" + tableName + "_GA]')\n";
-            //strQry += "\t\tAND OBJECTPROPERTY(id, N'IsProcedure') = 1)\n";
-            //strQry += "\tDROP PROCEDURE [dbo].[spGet" + tableName + "]\n";
-            //strQry += "GO\n\n";
+            strQry += "\nIF EXISTS (SELECT * FROM [dbo].[sysobjects]\n";
+            strQry += "\t\tWHERE ID = object_id(N'[dbo].[" + tableName + "_GA]')\n";
+            strQry += "\t\tAND OBJECTPROPERTY(id, N'IsProcedure') = 1)\n";
+            strQry += "\tDROP PROCEDURE [dbo].[" + tableName + spNameSurfix + "]\n";
+            strQry += "GO\n\n";
             strQry += "CREATE PROCEDURE " + tableName + spNameSurfix + "\n\n";
             strQry += "--\t******************************************************\n";
             strQry += "--\t   Author : SM Habib Ullah -- Prince\n";
