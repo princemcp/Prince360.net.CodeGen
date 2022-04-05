@@ -193,7 +193,7 @@ namespace Mega.CodeGen.WebAPI.netCore
             strQry += "\t\t\t}\n";
             strQry += "\t\t}\n\n";
 
-            strQry += "\t\t[HttpDelete(\"Delete\")]\n";
+            strQry += "\t\t[HttpPost(\"Delete\")]\n";
             strQry += "\t\tpublic IActionResult Delete([FromBody] " + tableName + "Entity_Ext param)\n";
             strQry += "\t\t{\n";
             strQry += "\t\t\ttry\n";
