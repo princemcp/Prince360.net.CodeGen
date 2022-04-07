@@ -47,7 +47,6 @@ namespace Mega.CodeGen.WebAPI.netCore
                     objclsColumnEntityList.RemoveAt(i);
                 }
             }
-
             strQry = "///////////////////////////////////////////////////////////////////////////////\n";
             strQry += "//      Author      : SM Habib Ullah -- Prince\n";
             strQry += "//      Web         : https://www.Prince360.net\n";
@@ -65,12 +64,12 @@ namespace Mega.CodeGen.WebAPI.netCore
             strQry += "\n\nnamespace " + nameSpace + "\n";
             strQry += "{\n";
             strQry += "\t[Serializable]\n";
-            strQry += "\t[DataContract(Name = \"" + tableName + "Entity\", Namespace = \"http://www.meganetict.com/types\")]\n";
+            strQry += "\t[DataContract(Name = \"" + tableName + "Entity\", Namespace = \"https://www.Prince360.net/types\")]\n";
             strQry += "\tpublic partial class " + tableName + "Entity : BaseEntity\n";
             strQry += "\t{\n";
             strQry += "\n";
             // strQry += "\n\n\n\n\t\t#region Base Table \n\n";
-            strQry += "\t\t#region public properties\n\n";
+            strQry += "\t\t#region Properties\n\n";
 
             for (int i = 0; i < objclsColumnEntityList.Count; i++)
             {
@@ -96,10 +95,16 @@ namespace Mega.CodeGen.WebAPI.netCore
                     continue;
                 }
                 strQry += "\t\t[DataMember]\t\t\n";
-                strQry += "\t\tpublic " + objclsColumnEntityList[i].ColumnDotNetType + " " + nullable + " " + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " { get; set;}\t\t\n";
+                //strQry += "\t\tpublic " + objclsColumnEntityList[i].ColumnDotNetType + " " + nullable + " " + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " { get; set;}\t\t\n";
+                strQry += "\t\tpublic " + objclsColumnEntityList[i].ColumnDotNetType + " " + nullable + " " + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + "\n";
+                strQry += "\t\t\t{\n";
+                strQry += "\t\t\t\tget { return _" + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1)+ "; }\n";
+                strQry += "\t\t\t\tset { _" + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " = value; this.OnChnaged(); }\n";
+                strQry += "\t\t\t}\n\n";
+                strQry += "\t\tprotected " + objclsColumnEntityList[i].ColumnDotNetType + " " + nullable + " _" + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + ";\t\t\n\n";
             }
 
-            strQry += "\n\t\t#endregion\n\n";
+            strQry += "\n\t\t#endregion Properties\n\n";
 
             strQry += "\t\t#region Master Details Lists\n\n";
             if (objclsColumnEntityList[0].RefarenceToTable != null)
@@ -188,7 +193,7 @@ namespace Mega.CodeGen.WebAPI.netCore
                                 strQry += tab + "if (!reader.IsDBNull(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"))) this.BaseSecurityParam." + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " = reader." + GetSqlDataType(objclsColumnEntityList[i].ColumnDBType) + "(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"));\n";
                                 continue;
                             }
-                            strQry += tab + "if (!reader.IsDBNull(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"))) " + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " = reader." + GetSqlDataType(objclsColumnEntityList[i].ColumnDBType) + "(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"));";
+                            strQry += tab + "if (!reader.IsDBNull(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"))) _" + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " = reader." + GetSqlDataType(objclsColumnEntityList[i].ColumnDBType) + "(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"));";
                         }
                         else
                         {
