@@ -105,49 +105,54 @@ namespace Mega.CodeGen.MSSQLEngine
                 {
                     if (objclsColumnEntityList[i].GetSPParam == true)
                     {
-                        if (objclsColumnEntityList[i].ColumnDBType != "image")
-                        {
-                            if (objclsColumnEntityList[i].IsMasterTable == true)
-                            {
-                                strQry += tab + "@" + objclsColumnEntityList[i].ColumnName.Trim() + tab + tab + tab + objclsColumnEntityList[i].ColumnDBType.Replace("identity", "") + " ";
-                            }
-                            else
-                            {
-                                strQry += tab + "@" + objclsColumnEntityList[i].ColumnAliasName.Trim() + tab + tab + tab + objclsColumnEntityList[i].ColumnDBType.Replace("identity", "") + " ";
-                            }
 
-                            if ((objclsColumnEntityList[i].ColumnDBType == "text")
-                                || (objclsColumnEntityList[i].ColumnDBType == "nchar")
-                                || (objclsColumnEntityList[i].ColumnDBType == "nvarchar")
-                                || (objclsColumnEntityList[i].ColumnDBType == "ntext")
-                                || (objclsColumnEntityList[i].ColumnDBType == "varchar")
-                                || (objclsColumnEntityList[i].ColumnDBType == "decimal")
-                                || (objclsColumnEntityList[i].ColumnDBType == "char"))
-                            {
-                                if (int.Parse(objclsColumnEntityList[i].Lenght.Trim()) > 8000)
-                                {
-                                    strQry += " = null";
-                                }
-                                else if (objclsColumnEntityList[i].ColumnDBType == "decimal")
-                                {
-                                    strQry += "(" + objclsColumnEntityList[i].Precsion.Trim() + "," + objclsColumnEntityList[i].Scale.Trim() + ")" + " = null";
-                                }
-                                else if (objclsColumnEntityList[i].ColumnDBType == "nvarchar")
-                                {
-                                    strQry += "(" + objclsColumnEntityList[i].Precsion.Trim() + ")" + " = null";
-                                }
-                                else
-                                {
-                                    strQry += "(" + objclsColumnEntityList[i].Lenght.Trim() + ")" + " = null";
-                                }
-                            }
-                            else
+                        if (objclsColumnEntityList[i].IsMasterTable == true)
+                        {
+                            strQry += tab + "@" + objclsColumnEntityList[i].ColumnName.Trim() + tab + tab + tab + objclsColumnEntityList[i].ColumnDBType.Replace("identity", "") + " ";
+                        }
+                        else
+                        {
+                            strQry += tab + "@" + objclsColumnEntityList[i].ColumnAliasName.Trim() + tab + tab + tab + objclsColumnEntityList[i].ColumnDBType.Replace("identity", "") + " ";
+                        }
+
+                        if ((objclsColumnEntityList[i].ColumnDBType == "text")
+                            || (objclsColumnEntityList[i].ColumnDBType == "nchar")
+                            || (objclsColumnEntityList[i].ColumnDBType == "nvarchar")
+                            || (objclsColumnEntityList[i].ColumnDBType == "ntext")
+                            || (objclsColumnEntityList[i].ColumnDBType == "varchar")
+                            || (objclsColumnEntityList[i].ColumnDBType == "decimal")
+                            || (objclsColumnEntityList[i].ColumnDBType == "char")
+                            || (objclsColumnEntityList[i].ColumnDBType == "byte[]")
+                            || (objclsColumnEntityList[i].ColumnDBType == "image"))
+                        {
+                            if (int.Parse(objclsColumnEntityList[i].Lenght.Trim()) > 8000)
                             {
                                 strQry += " = null";
                             }
-
-                            strQry += ",\n";
+                            //else if (objclsColumnEntityList[i].ColumnDBType == "image")
+                            //{
+                            //    strQry += " = null";
+                            //}
+                            else if (objclsColumnEntityList[i].ColumnDBType == "decimal")
+                            {
+                                strQry += "(" + objclsColumnEntityList[i].Precsion.Trim() + "," + objclsColumnEntityList[i].Scale.Trim() + ")" + " = null";
+                            }
+                            else if (objclsColumnEntityList[i].ColumnDBType == "nvarchar")
+                            {
+                                strQry += "(" + objclsColumnEntityList[i].Precsion.Trim() + ")" + " = null";
+                            }
+                            else
+                            {
+                                strQry += "(" + objclsColumnEntityList[i].Lenght.Trim() + ")" + " = null";
+                            }
                         }
+                        else
+                        {
+                            strQry += " = null";
+                        }
+
+                        strQry += ",\n";
+
                     }
                 }
             }
