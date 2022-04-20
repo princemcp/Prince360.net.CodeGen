@@ -204,6 +204,19 @@ namespace Mega.CodeGen.WebAPI.netCore
 
                         strQry += "\n";
                     }
+                    else
+                    {
+                        if (objclsColumnEntityList[i].ColumnDBType == "image")
+                        {
+                            strQry += tab + "if (!reader.IsDBNull(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"))) _" + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " = " + GetSqlDataType(objclsColumnEntityList[i].ColumnDBType) + "(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"), reader.GetBytes(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"), 0, null, 0, 0), reader);";
+                            strQry += "\n";
+                        }
+                        else if (objclsColumnEntityList[i].ColumnDBType == "byte[]")
+                        {
+                            strQry += tab + "if (!reader.IsDBNull(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"))) _" + objclsColumnEntityList[i].ColumnName.Substring(0, 1).ToLower() + objclsColumnEntityList[i].ColumnName.Substring(1, objclsColumnEntityList[i].ColumnName.Length - 1) + " = " + GetSqlDataType(objclsColumnEntityList[i].ColumnDBType) + "(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"), reader.GetBytes(reader.GetOrdinal(\"" + objclsColumnEntityList[i].ColumnAliasName.Trim() + "\"), 0, null, 0, 0), reader);";
+                            strQry += "\n";
+                        }
+                    }
 
                 }
                 strQry += tab + "CurrentState = EntityState.Unchanged;\n";
@@ -229,6 +242,8 @@ namespace Mega.CodeGen.WebAPI.netCore
             if (datatype == "varbinary") return "ParseStrictByteArray";
             if (datatype == "decimal") return "GetDecimal";
             if (datatype == "numeric") return "GetDecimal";
+            if (datatype == "byte[]") return "ParseStrictByteArray";
+            if (datatype == "image") return "ParseStrictByteArray";
             return "Unknown";
             
         }

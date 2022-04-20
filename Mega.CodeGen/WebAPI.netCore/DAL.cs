@@ -540,13 +540,13 @@ namespace Mega.CodeGen.WebAPI.netCore
                         }
                         strQry += "if (!(string.IsNullOrEmpty(entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + "))) { parameterList.Add(GetParameter(\"@" + item.ColumnName + "\", entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + ")); }" + tab;
                     }
-                    else if (item.ColumnDotNetType == "bool")
+                    else if (item.ColumnDotNetType == "bool" || item.ColumnDotNetType == "byte[]" )
                     {
                         if (x == 2)
                         {
                             strQry += "if (forDelete) return parameterList;" + tab; ;
                         }
-                        strQry += "if (entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + " != null) { parameterList.Add(GetParameter(\"@" + item.ColumnName + "\", entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + ".ToString())); }" + tab;
+                        strQry += "if (entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + " != null) { parameterList.Add(GetParameter(\"@" + item.ColumnName + "\", entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + ")); }" + tab;
                     }
                     else
                     {
@@ -554,7 +554,7 @@ namespace Mega.CodeGen.WebAPI.netCore
                         {
                             strQry += "if (forDelete) return parameterList;" + tab; ;
                         }
-                        strQry += "if (entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + ".HasValue) { parameterList.Add(GetParameter(\"@" + item.ColumnName + "\", entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + ".ToString())); }" + tab;
+                        strQry += "if (entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + ".HasValue) { parameterList.Add(GetParameter(\"@" + item.ColumnName + "\", entity." + item.ColumnName.Substring(0, 1).ToLower() + item.ColumnName.Substring(1, item.ColumnName.Length - 1) + ")); }" + tab;
                     }
 
                 }

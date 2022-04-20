@@ -115,6 +115,7 @@
             this.chkSPSearch = new System.Windows.Forms.CheckBox();
             this.chkSPGet = new System.Windows.Forms.CheckBox();
             this.WebAPINetCore = new System.Windows.Forms.TabPage();
+            this.chkWebApiController = new System.Windows.Forms.CheckBox();
             this.btnchkWebApiCoreCheck_Ext = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.chkWebApiCoreIBLL_Ext = new System.Windows.Forms.CheckBox();
@@ -159,7 +160,6 @@
             this.btnMVCSelectAll = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
-            this.chkWebApiController = new System.Windows.Forms.CheckBox();
             this.tab.SuspendLayout();
             this.DBCOnnection.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -884,7 +884,7 @@
             this.txtModuleName.Name = "txtModuleName";
             this.txtModuleName.Size = new System.Drawing.Size(366, 20);
             this.txtModuleName.TabIndex = 34;
-            this.txtModuleName.Text = "Security";
+            this.txtModuleName.Text = "RMS";
             // 
             // label9
             // 
@@ -916,7 +916,7 @@
             this.txtNamespace.Name = "txtNamespace";
             this.txtNamespace.Size = new System.Drawing.Size(366, 20);
             this.txtNamespace.TabIndex = 29;
-            this.txtNamespace.Text = "Mega";
+            this.txtNamespace.Text = "PRE";
             // 
             // txtPath
             // 
@@ -1041,6 +1041,14 @@
             this.WebAPINetCore.TabIndex = 3;
             this.WebAPINetCore.Text = "Web API (.Net Core)";
             this.WebAPINetCore.UseVisualStyleBackColor = true;
+            // 
+            // chkWebApiController
+            // 
+            this.chkWebApiController.Location = new System.Drawing.Point(947, 39);
+            this.chkWebApiController.Name = "chkWebApiController";
+            this.chkWebApiController.Size = new System.Drawing.Size(143, 24);
+            this.chkWebApiController.TabIndex = 64;
+            this.chkWebApiController.Text = "Create Controller";
             // 
             // btnchkWebApiCoreCheck_Ext
             // 
@@ -1445,14 +1453,6 @@
             this.btnGenerate.TabIndex = 32;
             this.btnGenerate.Text = "Generate Code";
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
-            // 
-            // chkWebApiController
-            // 
-            this.chkWebApiController.Location = new System.Drawing.Point(947, 39);
-            this.chkWebApiController.Name = "chkWebApiController";
-            this.chkWebApiController.Size = new System.Drawing.Size(143, 24);
-            this.chkWebApiController.TabIndex = 64;
-            this.chkWebApiController.Text = "Create Controller";
             // 
             // frmMain
             // 
